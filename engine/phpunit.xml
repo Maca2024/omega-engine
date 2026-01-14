@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+================================================================================
+OMEGA ENGINE - PHPUnit/Pest Configuration
+================================================================================
+
+Pest is gebouwd bovenop PHPUnit, dus deze configuratie wordt gebruikt.
+We configureren coverage, directories, en andere test settings hier.
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         failOnRisky="true"
+         failOnWarning="true"
+         beStrictAboutOutputDuringTests="true">
+
+    <!-- Test directories -->
+    <testsuites>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Code Coverage Configuration -->
+    <coverage>
+        <include>
+            <directory suffix=".php">app</directory>
+        </include>
+        <exclude>
+            <directory>app/Providers</directory>
+            <directory>vendor</directory>
+        </exclude>
+        <report>
+            <html outputDirectory="coverage/html"/>
+            <text outputFile="coverage/coverage.txt"/>
+            <clover outputFile="coverage/clover.xml"/>
+        </report>
+    </coverage>
+
+    <!-- PHP Settings -->
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <ini name="memory_limit" value="512M"/>
+        <ini name="display_errors" value="On"/>
+        <ini name="error_reporting" value="E_ALL"/>
+    </php>
+</phpunit>

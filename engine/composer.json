@@ -1,0 +1,74 @@
+{
+    "name": "solvari/omega-engine",
+    "description": "De RalphLoop - Autonomous PHP Refactoring Engine voor Solvari",
+    "keywords": ["php", "refactoring", "rector", "phpstan", "ai", "automation"],
+    "license": "proprietary",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Solvari Engineering",
+            "email": "engineering@solvari.com"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "laravel-zero/framework": "^11.0",
+        "rector/rector": "^1.0|^2.0",
+        "phpstan/phpstan": "^1.10|^2.0",
+        "phpstan/phpstan-strict-rules": "^1.5|^2.0",
+        "phpstan/phpstan-deprecation-rules": "^1.1|^2.0",
+        "anthropic-ai/sdk": "^0.4",
+        "symfony/process": "^7.0",
+        "symfony/filesystem": "^7.0",
+        "illuminate/collections": "^11.0",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "mockery/mockery": "^1.6",
+        "friendsofphp/php-cs-fixer": "^3.50"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "bin": ["omega"],
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php omega clear-compiled",
+        "prepare": "@php omega package:discover --ansi",
+        "test": "pest --parallel",
+        "test:coverage": "pest --parallel --coverage --min=100",
+        "analyse": "phpstan analyse --memory-limit=2G",
+        "rector": "rector process --dry-run",
+        "rector:fix": "rector process",
+        "cs": "php-cs-fixer fix --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix",
+        "quality": [
+            "@analyse",
+            "@test",
+            "@cs"
+        ]
+    }
+}

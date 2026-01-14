@@ -1,0 +1,60 @@
+# ==============================================================================
+# OMEGA ENGINE - Docker Compose Configuration
+# ==============================================================================
+#
+# Voor lokale development en testing van de Omega Engine.
+#
+# GEBRUIK:
+#   docker-compose up -d        # Start de engine
+#   docker-compose exec omega   # Open shell in container
+#   docker-compose down         # Stop alles
+#
+# ==============================================================================
+
+version: "3.9"
+
+services:
+  omega:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: solvari/omega-engine:latest
+    container_name: omega-engine
+
+    # Environment variables
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - PHP_MEMORY_LIMIT=2G
+
+    # Mount de workspace voor refactoring
+    volumes:
+      - ../workspace:/workspace:rw
+      - ../engine:/app:ro
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 4G
+        reservations:
+          cpus: "1"
+          memory: 2G
+
+    # Keep container running voor interactive use
+    stdin_open: true
+    tty: true
+
+    # Override default command voor development
+    command: ["bash"]
+
+  # Optional: Redis voor caching (future feature)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: omega-redis
+  #   ports:
+  #     - "6379:6379"
+
+networks:
+  default:
+    name: omega-network

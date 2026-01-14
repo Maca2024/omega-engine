@@ -1,0 +1,48 @@
+# ==============================================================================
+# OMEGA ENGINE - Root Git Ignore
+# ==============================================================================
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Node modules (trigger)
+trigger/node_modules/
+
+# PHP vendor (engine)
+engine/vendor/
+engine/composer.lock
+
+# Build artifacts
+*.phar
+builds/
+
+# Cache
+.phpunit.cache/
+.pest/
+phpstan-cache/
+
+# Coverage reports
+coverage/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+tmpclaude-*

@@ -1,0 +1,165 @@
+# ==============================================================================
+# OMEGA-PHP PHPSTAN CONFIGURATIE
+# ==============================================================================
+#
+# PHPStan Level 9 is onze "Gold Standard" - de hoogste level van static analysis.
+# Code die Level 9 passeert is praktisch foutloos qua type safety.
+#
+# WAAROM LEVEL 9?
+# - Level 9 is de strengste level en vangt bugs die andere tools missen
+# - Het dwingt expliciete types af, wat de codebase zelf-documenterend maakt
+# - AI-gegenereerde fixes zijn makkelijker te valideren met strikte regels
+#
+# DE RALPHLOOP GEBRUIKT DIT BESTAND:
+# 1. Run PHPStan met deze config
+# 2. Capture alle errors
+# 3. Feed errors naar Claude API
+# 4. Apply fixes
+# 5. Herhaal totdat 0 errors
+# ==============================================================================
+
+includes:
+    # Strict rules: extra strenge checks bovenop Level 9
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+    # Deprecation rules: catch gebruik van deprecated features
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    # ==========================================================================
+    # ANALYSIS LEVEL
+    # ==========================================================================
+    # Level 9 is het maximum. Hier is wat elke level toevoegt:
+    # 0: Basic checks (syntax, unknown classes)
+    # 1: Possibly undefined variables
+    # 2: Unknown methods on $this
+    # 3: Return types, properties
+    # 4: Dead code, unreachable statements
+    # 5: Method arguments
+    # 6: Missing typehints
+    # 7: Union types, nullability
+    # 8: Nullability checks
+    # 9: Mixed type issues (de holy grail)
+    # ==========================================================================
+    level: 9
+
+    # ==========================================================================
+    # PATHS TO ANALYSE
+    # ==========================================================================
+    paths:
+        - app
+
+    # ==========================================================================
+    # EXCLUDED PATHS
+    # ==========================================================================
+    # We excluden gegenereerde en third-party code.
+    # ==========================================================================
+    excludePaths:
+        - vendor
+        - storage
+        - bootstrap/cache
+        - tests
+
+    # ==========================================================================
+    # TREAT PHPDOC TYPES AS NATIVE
+    # ==========================================================================
+    # Als PHPDoc zegt dat iets een string is, behandel het als string.
+    # Dit helpt bij legacy code waar types nog niet native zijn.
+    # ==========================================================================
+    treatPhpDocTypesAsCertain: true
+
+    # ==========================================================================
+    # REPORT UNMATCHED IGNORED ERRORS
+    # ==========================================================================
+    # Als we een error ignoren die niet meer voorkomt, meld dat.
+    # Dit voorkomt dat onze ignore-list vervuild raakt.
+    # ==========================================================================
+    reportUnmatchedIgnoredErrors: true
+
+    # ==========================================================================
+    # CHECK EXPLICIT MIXED
+    # ==========================================================================
+    # Vereist dat 'mixed' expliciet wordt gedeclareerd.
+    # Impliciet mixed (geen type) is een error.
+    # ==========================================================================
+    checkExplicitMixed: true
+
+    # ==========================================================================
+    # CHECK FUNCTION NAME CASE
+    # ==========================================================================
+    # array_map() vs Array_Map() - enforce correcte casing.
+    # ==========================================================================
+    checkFunctionNameCase: true
+
+    # ==========================================================================
+    # CHECK INTERNAL CLASS CASINGS
+    # ==========================================================================
+    # DateTime vs datetime - enforce correcte PHP class casing.
+    # ==========================================================================
+    checkInternalClassCasings: true
+
+    # ==========================================================================
+    # CHECK MISSING ITERATION VALUE TYPE
+    # ==========================================================================
+    # foreach($items as $item) - $item moet een type hebben.
+    # ==========================================================================
+    checkMissingIterableValueType: true
+
+    # ==========================================================================
+    # CHECK GENERIC CLASS IN NON-GENERIC CONTEXT
+    # ==========================================================================
+    # Collection zonder type parameter is een error.
+    # ==========================================================================
+    checkGenericClassInNonGenericObjectType: true
+
+    # ==========================================================================
+    # CHECK TOO WIDE RETURN TYPES
+    # ==========================================================================
+    # Als een method 'string' declareert maar altijd een specifieke
+    # waarde returnt, suggereert PHPStan een narrower type.
+    # ==========================================================================
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+
+    # ==========================================================================
+    # PARALLEL PROCESSING
+    # ==========================================================================
+    # Gebruik multiple cores voor snellere analyse.
+    # ==========================================================================
+    parallel:
+        maximumNumberOfProcesses: 8
+        processTimeout: 300.0
+
+    # ==========================================================================
+    # TYPE COVERAGE
+    # ==========================================================================
+    # We streven naar 100% type coverage.
+    # ==========================================================================
+    type_coverage:
+        return_type: 100
+        param_type: 100
+        property_type: 100
+
+    # ==========================================================================
+    # IGNORED ERRORS
+    # ==========================================================================
+    # Sommige errors zijn known issues of false positives.
+    # We documenteren WAAROM we ze ignoren.
+    #
+    # BELEID: Voeg hier NOOIT errors toe zonder duidelijke reden.
+    # De RalphLoop moet errors FIXEN, niet ignoren.
+    # ==========================================================================
+    ignoreErrors:
+        # Laravel's facade magic - PHPStan kan dit niet volledig begrijpen
+        # zonder de larastan plugin (die we hier niet gebruiken voor isolatie)
+        # -
+        #     message: '#Call to static method .+ on an unknown class#'
+        #     path: app/*
+
+    # ==========================================================================
+    # CUSTOM STUB FILES
+    # ==========================================================================
+    # Voor third-party libraries zonder goede type hints kunnen we
+    # stub files toevoegen.
+    # ==========================================================================
+    # stubFiles:
+    #     - stubs/SomeLibrary.stub

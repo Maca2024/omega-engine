@@ -1,0 +1,46 @@
+# ==============================================================================
+# OMEGA ENGINE - Git Ignore
+# ==============================================================================
+
+# Composer dependencies
+/vendor/
+
+# Laravel specific
+/storage/*.key
+/.env
+/.env.backup
+
+# Cache & Logs
+/storage/logs/*
+/storage/app/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*
+
+# IDE files
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+.phpunit.result.cache
+/coverage/
+.pest/
+
+# Build artifacts
+/builds/
+*.phar
+
+# Local configuration
+.env.local
+.env.*.local
+
+# PHPStan cache
+/phpstan-cache/
