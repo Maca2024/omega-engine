@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace App\Commands;
 
 use App\Services\RalphLoop;
-use Anthropic\Anthropic;
+use Anthropic\Client as AnthropicClient;
 use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -116,9 +116,10 @@ final class RefactorCommand extends Command
             : $this->createAnthropicClient($apiKey);
 
         // Instantieer de RalphLoop
+        // We gebruiken /app als project root (waar de vendor binaries staan)
         $ralphLoop = new RalphLoop(
             anthropic: $anthropic,
-            projectRoot: dirname($targetPath),
+            projectRoot: base_path(),
         );
 
         // =====================================================================
@@ -188,13 +189,11 @@ final class RefactorCommand extends Command
      * Maak een Anthropic client.
      *
      * @param  string|null $apiKey  De API key
-     * @return Anthropic            De client
+     * @return AnthropicClient      De client
      */
-    private function createAnthropicClient(?string $apiKey): Anthropic
+    private function createAnthropicClient(?string $apiKey): AnthropicClient
     {
-        return new Anthropic([
-            'api_key' => $apiKey,
-        ]);
+        return new AnthropicClient($apiKey ?? '');
     }
 
     /**
@@ -202,17 +201,15 @@ final class RefactorCommand extends Command
      *
      * DESIGN NOTE: In een ideale wereld zouden we een interface gebruiken
      * en een NullObject pattern implementeren. Voor nu is dit een pragmatische
-     * oplossing die werkt met de concrete Anthropic class.
+     * oplossing die werkt met de concrete AnthropicClient class.
      *
-     * @return Anthropic
+     * @return AnthropicClient
      */
-    private function createDummyClient(): Anthropic
+    private function createDummyClient(): AnthropicClient
     {
         // We maken een client met een dummy key
         // Deze wordt nooit daadwerkelijk aangeroepen in dry-run mode
-        return new Anthropic([
-            'api_key' => 'dry-run-mode',
-        ]);
+        return new AnthropicClient('dry-run-mode');
     }
 
     /**

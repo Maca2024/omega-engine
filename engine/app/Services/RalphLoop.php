@@ -29,8 +29,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Anthropic\Anthropic;
-use Anthropic\Types\Message;
+use Anthropic\Client as AnthropicClient;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Support\Collection;
@@ -91,7 +90,7 @@ final class RalphLoop
     /**
      * De Anthropic client voor AI-assisted fixes.
      */
-    private readonly Anthropic $anthropic;
+    private readonly AnthropicClient $anthropic;
 
     /**
      * Pad naar de Rector binary.
@@ -124,7 +123,7 @@ final class RalphLoop
      * @param string|null $projectRoot  Project root (default: getcwd())
      */
     public function __construct(
-        Anthropic $anthropic,
+        AnthropicClient $anthropic,
         ?string $projectRoot = null,
     ) {
         $this->anthropic = $anthropic;
