@@ -1,5 +1,5 @@
 {
-  "name": "@solvari/omega-trigger",
+  "name": "@aetherlink/omega-trigger",
   "version": "1.0.0",
   "description": "Trigger.dev orchestration for the Omega-PHP Refactoring Engine",
   "private": true,
@@ -26,6 +26,6 @@
     "vitest": "^2.0.0"
   },
   "trigger": {
-    "project": "solvari-omega-engine"
+    "project": "aetherlink-omega-engine"
   }
 }

@@ -21,8 +21,8 @@
  * - Loop met limiet: Voorkomt infinite loops bij onoplosbare problemen
  * - Gestructureerde output: Elke iteratie is traceerbaar voor debugging
  *
- * @package Solvari\OmegaEngine
- * @author  Solvari Engineering <engineering@solvari.com>
+ * @package AetherLink.AI Tech\OmegaEngine
+ * @author  AetherLink.AI Tech Engineering <engineering@solvari.com>
  */
 
 declare(strict_types=1);

@@ -203,10 +203,10 @@ cd omega-engine
 
 # 2️⃣ Build de Docker image
 cd docker
-docker build -t solvari/omega-engine:latest .
+docker build -t aetherlink/omega-engine:latest .
 
 # 3️⃣ Verify installatie
-docker run --rm solvari/omega-engine:latest php -v
+docker run --rm aetherlink/omega-engine:latest php -v
 ```
 
 <br>
@@ -230,7 +230,7 @@ docker run --rm solvari/omega-engine:latest php -v
 │     -v "C:/JOUW-PROJECT:/workspace" \              ◀── Mount je project                          │
 │     -v "C:/omega-engine/engine:/app" \             ◀── Mount de engine                           │
 │     -e ANTHROPIC_API_KEY=sk-ant-xxx \              ◀── Je API key                                │
-│     solvari/omega-engine:latest \                  ◀── De Docker image                           │
+│     aetherlink/omega-engine:latest \                  ◀── De Docker image                           │
 │     php omega refactor /workspace/FILE.php         ◀── Het commando                              │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -264,7 +264,7 @@ docker run --rm solvari/omega-engine:latest php -v
 │  docker run --rm \                                                  │
 │    -v "C:/mijn-project:/workspace" \                                │
 │    -v "C:/omega-engine/engine:/app" \                               │
-│    solvari/omega-engine:latest \                                    │
+│    aetherlink/omega-engine:latest \                                    │
 │    php omega refactor /workspace/src/Controller.php --dry-run       │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -276,7 +276,7 @@ docker run --rm solvari/omega-engine:latest php -v
 ```
 ╔══════════════════════════════════════════════════════════════╗
 ║         OMEGA-PHP REFACTORING ENGINE - De RalphLoop          ║
-║                   Solvari Engineering © 2024                 ║
+║                   AetherLink.AI Tech Engineering © 2024                 ║
 ╚══════════════════════════════════════════════════════════════╝
 
 Target: /workspace/src/Controller.php
@@ -317,7 +317,7 @@ Mode: DRY RUN (no changes)
 │    -v "C:/mijn-project:/workspace" \                                │
 │    -v "C:/omega-engine/engine:/app" \                               │
 │    -e ANTHROPIC_API_KEY=sk-ant-api03-xxxxx \                        │
-│    solvari/omega-engine:latest \                                    │
+│    aetherlink/omega-engine:latest \                                    │
 │    php omega refactor /workspace/src/Controller.php                 │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -329,7 +329,7 @@ Mode: DRY RUN (no changes)
 ```
 ╔══════════════════════════════════════════════════════════════╗
 ║         OMEGA-PHP REFACTORING ENGINE - De RalphLoop          ║
-║                   Solvari Engineering © 2024                 ║
+║                   AetherLink.AI Tech Engineering © 2024                 ║
 ╚══════════════════════════════════════════════════════════════╝
 
 Target: /workspace/src/Controller.php
@@ -398,7 +398,7 @@ Mode: LIVE
 │    -v "C:/mijn-project:/workspace" \                                │
 │    -v "C:/omega-engine/engine:/app" \                               │
 │    -e ANTHROPIC_API_KEY=sk-ant-api03-xxxxx \                        │
-│    solvari/omega-engine:latest \                                    │
+│    aetherlink/omega-engine:latest \                                    │
 │    php omega refactor /workspace/src/Controller.php --output=json   │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -454,7 +454,7 @@ Mode: LIVE
 │    -v "C:/Users/dev/project:/workspace" `                           │
 │    -v "C:/Users/dev/omega-engine/engine:/app" `                     │
 │    -e ANTHROPIC_API_KEY=$env:ANTHROPIC_API_KEY `                    │
-│    solvari/omega-engine:latest `                                    │
+│    aetherlink/omega-engine:latest `                                    │
 │    php omega refactor /workspace/src/Controller.php                 │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -678,7 +678,7 @@ php omega refactor /workspace/src/File.php
 <br>
 
 <p align="center">
-  <strong>Proprietary - Solvari Engineering © 2024</strong>
+  <strong>Proprietary - AetherLink.AI Tech Engineering © 2024</strong>
 </p>
 
 <br>
@@ -692,7 +692,7 @@ php omega refactor /workspace/src/File.php
 </p>
 
 <p align="center">
-  <strong>SOLVARI ENGINEERING</strong><br>
+  <strong>AETHERLINK.AI TECH ENGINEERING</strong><br>
   <em>Powered by Claude AI • Rector • PHPStan • Pest</em>
 </p>
 

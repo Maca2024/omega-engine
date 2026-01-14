@@ -18,7 +18,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: solvari/omega-engine:latest
+    image: aetherlink/omega-engine:latest
     container_name: omega-engine
 
     # Environment variables

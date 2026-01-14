@@ -1,13 +1,13 @@
 {
-    "name": "solvari/omega-engine",
-    "description": "De RalphLoop - Autonomous PHP Refactoring Engine voor Solvari",
+    "name": "aetherlink/omega-engine",
+    "description": "De RalphLoop - Autonomous PHP Refactoring Engine voor AetherLink.AI Tech",
     "keywords": ["php", "refactoring", "rector", "phpstan", "ai", "automation"],
     "license": "proprietary",
     "type": "project",
     "authors": [
         {
-            "name": "Solvari Engineering",
-            "email": "engineering@solvari.com"
+            "name": "AetherLink.AI Tech Engineering",
+            "email": "engineering@aetherlink.com"
         }
     ],
     "require": {

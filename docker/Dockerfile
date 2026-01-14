@@ -3,13 +3,13 @@
 # ==============================================================================
 # Standalone container met PHP 8.4 en Composer voor de RalphLoop Engine.
 #
-# BUILD:   docker build -t solvari/omega-engine:latest .
-# RUN:     docker run -it -v ../engine:/app solvari/omega-engine:latest bash
+# BUILD:   docker build -t aetherlink/omega-engine:latest .
+# RUN:     docker run -it -v ../engine:/app aetherlink/omega-engine:latest bash
 # ==============================================================================
 
 FROM php:8.4-cli-alpine
 
-LABEL maintainer="Solvari Engineering <engineering@solvari.com>"
+LABEL maintainer="AetherLink.AI Tech Engineering <engineering@aetherlink.com>"
 LABEL description="Omega-PHP Refactoring Engine - De RalphLoop Container"
 LABEL version="1.0.0"
 

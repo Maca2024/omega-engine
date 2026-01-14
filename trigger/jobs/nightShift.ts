@@ -113,7 +113,7 @@ interface NightShiftResult {
 
 const CONFIG = {
   /** Default Docker image voor de RalphLoop Engine */
-  defaultDockerImage: "solvari/omega-engine:latest",
+  defaultDockerImage: "aetherlink/omega-engine:latest",
 
   /** Timeout per bestand (in milliseconden) */
   perFileTimeout: 600_000, // 10 minuten

@@ -16,7 +16,7 @@ export default defineConfig({
   // ===========================================================================
   // Dit moet matchen met je project ID in het Trigger.dev dashboard.
   // ===========================================================================
-  project: "solvari-omega-engine",
+  project: "aetherlink-omega-engine",
 
   // ===========================================================================
   // RUNTIME CONFIGURATIE
