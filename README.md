@@ -658,16 +658,635 @@ php omega refactor /workspace/src/File.php
 
 ---
 
+<h2 align="center">🧪 TEST SUITE - 32 TESTS</h2>
+
+<br>
+
+> **PHP-OMEGA-T-1** bevat een volledig uitgeruste test-suite gebouwd met **Pest PHP** - de meest elegante testing framework voor PHP.
+
+<br>
+
+### 📋 TEST OVERZICHT
+
+```
+╔══════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                  ║
+║   🧪 PHP-OMEGA-T-1 TEST SUITE                                                    ║
+║   ════════════════════════════                                                   ║
+║                                                                                  ║
+║   ┌──────────────────────────────────────────────────────────────────────────┐  ║
+║   │  ENUMS                                                                   │  ║
+║   │  ─────                                                                   │  ║
+║   │  ✅ VatRateTest.php             │ 6 tests  │ VAT rates & product types   │  ║
+║   │  ✅ OrderStatusTest.php         │ 8 tests  │ Status transitions          │  ║
+║   └──────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                  ║
+║   ┌──────────────────────────────────────────────────────────────────────────┐  ║
+║   │  DTOs (Data Transfer Objects)                                            │  ║
+║   │  ───────────────────────────                                             │  ║
+║   │  ✅ CartItemDTOTest.php         │ 8 tests  │ Cart calculations           │  ║
+║   │  ✅ OrderTotalsDTOTest.php      │ 3 tests  │ Totals & immutability       │  ║
+║   └──────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                  ║
+║   ┌──────────────────────────────────────────────────────────────────────────┐  ║
+║   │  SERVICES                                                                │  ║
+║   │  ────────                                                                │  ║
+║   │  ✅ OrderCalculationServiceTest │ 7 tests  │ Discounts, VAT, totals      │  ║
+║   └──────────────────────────────────────────────────────────────────────────┘  ║
+║                                                                                  ║
+║   ══════════════════════════════════════════════════════════════════════════    ║
+║                                TOTAAL: 32 TESTS ✅                              ║
+║   ══════════════════════════════════════════════════════════════════════════    ║
+║                                                                                  ║
+╚══════════════════════════════════════════════════════════════════════════════════╝
+```
+
+<br>
+
+### 🎯 TEST VOORBEELDEN
+
+<details>
+<summary><strong>📦 OrderCalculationServiceTest.php</strong> (klik om te openen)</summary>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use App\Domain\Order\DTOs\CartItemDTO;
+use App\Domain\Order\DTOs\OrderTotalsDTO;
+use App\Domain\Order\Enums\VatRate;
+use App\Domain\Order\Services\OrderCalculationService;
+
+describe('OrderCalculationService', function (): void {
+
+    beforeEach(function (): void {
+        $this->service = new OrderCalculationService();
+    });
+
+    it('returns zero totals for empty cart', function (): void {
+        $totals = $this->service->calculateTotals([]);
+
+        expect($totals)->toBeInstanceOf(OrderTotalsDTO::class);
+        expect($totals->subtotal)->toBe(0.0);
+        expect($totals->grandTotal)->toBe(0.0);
+    });
+
+    it('calculates totals for single item without discount', function (): void {
+        $items = [
+            new CartItemDTO(1, 'Product', 50.00, 1, VatRate::HIGH),
+        ];
+
+        $totals = $this->service->calculateTotals($items);
+
+        // 50 EUR, no discount (< 100), 21% VAT = 10.50
+        expect($totals->subtotal)->toBe(50.00);
+        expect($totals->vatHigh)->toBe(10.50);
+        expect($totals->grandTotal)->toBe(60.50);
+    });
+
+    it('applies 5% discount for orders over 100 EUR', function (): void {
+        $items = [
+            new CartItemDTO(1, 'Product', 150.00, 1, VatRate::HIGH),
+        ];
+
+        $totals = $this->service->calculateTotals($items);
+
+        // 150 EUR, 5% discount = 7.50, subtotal = 142.50
+        expect($totals->subtotal)->toBe(142.50);
+        expect($totals->discountAmount)->toBe(7.50);
+    });
+
+    it('applies 10% discount for orders over 500 EUR', function (): void {
+        $items = [
+            new CartItemDTO(1, 'Product', 600.00, 1, VatRate::HIGH),
+        ];
+
+        $totals = $this->service->calculateTotals($items);
+
+        // 600 EUR, 10% discount = 60, subtotal = 540
+        expect($totals->subtotal)->toBe(540.00);
+        expect($totals->discountAmount)->toBe(60.00);
+    });
+
+    it('separates VAT by rate', function (): void {
+        $items = [
+            new CartItemDTO(1, 'High VAT Product', 50.00, 1, VatRate::HIGH),
+            new CartItemDTO(2, 'Low VAT Product', 50.00, 1, VatRate::LOW),
+        ];
+
+        $totals = $this->service->calculateTotals($items);
+
+        // High VAT: 50 * 0.21 = 10.50
+        // Low VAT: 50 * 0.09 = 4.50
+        expect($totals->vatHigh)->toBe(10.50);
+        expect($totals->vatLow)->toBe(4.50);
+    });
+
+});
+```
+
+</details>
+
+<details>
+<summary><strong>🏷️ VatRateTest.php</strong> (klik om te openen)</summary>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use App\Domain\Order\Enums\VatRate;
+
+describe('VatRate Enum', function (): void {
+
+    it('returns correct rate for HIGH', function (): void {
+        expect(VatRate::HIGH->rate())->toBe(0.21);
+    });
+
+    it('returns correct rate for LOW', function (): void {
+        expect(VatRate::LOW->rate())->toBe(0.09);
+    });
+
+    it('returns correct rate for ZERO', function (): void {
+        expect(VatRate::ZERO->rate())->toBe(0.0);
+    });
+
+    it('maps product type 1 to HIGH', function (): void {
+        expect(VatRate::fromProductType(1))->toBe(VatRate::HIGH);
+    });
+
+    it('maps product type 2 to LOW', function (): void {
+        expect(VatRate::fromProductType(2))->toBe(VatRate::LOW);
+    });
+
+    it('maps unknown product type to ZERO', function (): void {
+        expect(VatRate::fromProductType(99))->toBe(VatRate::ZERO);
+    });
+
+});
+```
+
+</details>
+
+<br>
+
+### 🏃 TESTS UITVOEREN
+
+```bash
+# Navigeer naar de test directory
+cd test-files/modern
+
+# Installeer dependencies
+composer install
+
+# Run alle tests
+./vendor/bin/pest
+
+# Run met coverage
+./vendor/bin/pest --coverage
+```
+
+<br>
+
+---
+
+<h2 align="center">🔥 BIOHAZARD TRANSFORMATION SHOWCASE 🔥</h2>
+
+<br>
+
+> **Het ultieme bewijs van de kracht van PHP-OMEGA-T-1**: Een 150-regel legacy PHP horror file getransformeerd naar **26 moderne PHP 8.4 bestanden** met **PHPStan Level 9** compliance.
+
+<br>
+
+### ☠️ VOOR: Legacy Biohazard (OrderProcess_Controller.php)
+
+```php
+// 🚨 WAARSCHUWING: BEVAT EXTREME SECURITY VULNERABILITIES
+
+<?php
+// LEGACY: OrderProcess_Controller.php - BIOHAZARD CODE
+
+class OrderProcess_Controller {
+    var $db;  // PHP4 style
+
+    function OrderProcess_Controller() {  // PHP4 constructor
+        extract($_REQUEST);  // 🔥 CRITICAL VULNERABILITY
+        $this->db = mysql_connect("localhost", "root", "");  // deprecated
+    }
+
+    function processOrder() {
+        extract($_POST);  // 🔥 VARIABLE INJECTION
+
+        // 🔥 SQL INJECTION
+        $query = "SELECT * FROM users WHERE id = " . $_GET['user_id'];
+        $result = mysql_query($query);
+
+        // 🔥 EVAL() USAGE
+        eval('$discount = ' . $_POST['discount_code'] . ';');
+
+        // 🔥 XSS VULNERABILITY
+        echo "<h1>Order for: " . $customer_name . "</h1>";
+
+        // Business logic gemixed met HTML...
+    }
+}
+```
+
+<br>
+
+### ✨ NA: Moderne PHP 8.4 Architectuur
+
+```
+test-files/modern/
+│
+├── 📁 src/
+│   ├── 📁 Domain/Order/
+│   │   ├── 📁 Contracts/
+│   │   │   └── OrderRepositoryInterface.php     ← Clean interfaces
+│   │   ├── 📁 DTOs/
+│   │   │   ├── CartItemDTO.php                  ← Immutable data objects
+│   │   │   ├── OrderDTO.php
+│   │   │   ├── OrderTotalsDTO.php
+│   │   │   └── UserDTO.php
+│   │   ├── 📁 Enums/
+│   │   │   ├── OrderStatus.php                  ← Type-safe enums
+│   │   │   └── VatRate.php
+│   │   ├── 📁 Exceptions/
+│   │   │   ├── UnauthorizedOrderAccessException.php
+│   │   │   ├── UserNotFoundException.php
+│   │   │   └── ValidationException.php
+│   │   └── 📁 Services/
+│   │       ├── OrderCalculationService.php      ← Pure business logic
+│   │       ├── OrderCreatedEvent.php
+│   │       ├── OrderEventDispatcherInterface.php
+│   │       └── OrderService.php
+│   │
+│   ├── 📁 Http/
+│   │   ├── 📁 Controllers/
+│   │   │   └── OrderController.php              ← Thin controller
+│   │   ├── 📁 Requests/
+│   │   │   ├── CreateOrderRequest.php
+│   │   │   └── DeleteOrderRequest.php
+│   │   ├── 📁 Responses/
+│   │   │   ├── JsonResponse.php
+│   │   │   └── ViewResponse.php
+│   │   └── 📁 Validation/
+│   │       └── RequestValidator.php
+│   │
+│   └── 📁 Infrastructure/
+│       ├── 📁 Mail/
+│       │   ├── OrderMailer.php
+│       │   └── QueuedOrderEventDispatcher.php
+│       └── 📁 Persistence/
+│           └── PdoOrderRepository.php           ← PDO with prepared statements
+│
+├── 📁 tests/
+│   ├── Pest.php
+│   └── 📁 Unit/Domain/Order/
+│       ├── 📁 DTOs/
+│       │   ├── CartItemDTOTest.php
+│       │   └── OrderTotalsDTOTest.php
+│       ├── 📁 Enums/
+│       │   ├── OrderStatusTest.php
+│       │   └── VatRateTest.php
+│       └── 📁 Services/
+│           └── OrderCalculationServiceTest.php
+│
+└── 📁 templates/
+    ├── error.php
+    └── 📁 order/
+        └── form.php
+```
+
+<br>
+
+### 📊 TRANSFORMATIE STATISTIEKEN
+
+```
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                                                                             ║
+║   📊 BIOHAZARD → GOLD STANDARD TRANSFORMATION                               ║
+║   ═══════════════════════════════════════════                               ║
+║                                                                             ║
+║   ┌───────────────────────────────────────────────────────────────────────┐ ║
+║   │                                                                       │ ║
+║   │   BEFORE                          AFTER                               │ ║
+║   │   ──────                          ─────                               │ ║
+║   │   1 file (150 lines)      →       26 files (987 lines)                │ ║
+║   │   PHP 4/5 syntax          →       PHP 8.4 strict                      │ ║
+║   │   0 types                 →       100% typed                          │ ║
+║   │   0 tests                 →       32 tests                            │ ║
+║   │   6+ security vulns       →       0 vulnerabilities                   │ ║
+║   │   PHPStan: FAIL           →       PHPStan Level 9: PASS              │ ║
+║   │                                                                       │ ║
+║   └───────────────────────────────────────────────────────────────────────┘ ║
+║                                                                             ║
+║   🔒 SECURITY FIXES:                                                        ║
+║   • SQL Injection        → PDO Prepared Statements                          ║
+║   • XSS                  → htmlspecialchars() escaping                      ║
+║   • extract($_REQUEST)   → Explicit parameter handling                      ║
+║   • eval()               → REMOVED completely                               ║
+║   • mysql_*              → PDO with parameterized queries                   ║
+║   • Hardcoded creds      → Environment-based configuration                  ║
+║                                                                             ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+```
+
+<br>
+
+---
+
+<h2 align="center">📚 GEDETAILLEERDE INSTALLATIE HANDLEIDING</h2>
+
+<br>
+
+### 🔑 STAP 1: Verkrijg Je Anthropic API Key
+
+```
+╔══════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                  ║
+║   🔐 HOE KRIJG JE EEN ANTHROPIC API KEY?                                         ║
+║   ══════════════════════════════════════                                         ║
+║                                                                                  ║
+║   1️⃣  Ga naar: https://console.anthropic.com                                     ║
+║                                                                                  ║
+║   2️⃣  Klik op "Sign Up" of "Log In"                                              ║
+║       • Je kunt inloggen met Google, of                                          ║
+║       • Een account aanmaken met email                                           ║
+║                                                                                  ║
+║   3️⃣  Nadat je bent ingelogd:                                                    ║
+║       • Navigeer naar "API Keys" in het menu                                     ║
+║       • Klik op "Create Key"                                                     ║
+║       • Geef de key een naam (bijv. "omega-engine")                              ║
+║       • Klik "Create"                                                            ║
+║                                                                                  ║
+║   4️⃣  BELANGRIJK: Kopieer de key DIRECT!                                         ║
+║       • De key begint met: sk-ant-api03-...                                      ║
+║       • Je kunt de key maar 1x zien!                                             ║
+║       • Bewaar hem veilig (bijv. password manager)                               ║
+║                                                                                  ║
+║   💰 KOSTEN:                                                                     ║
+║       • Nieuwe accounts krijgen vaak $5-$10 free credits                         ║
+║       • Een gemiddelde refactoring kost ~$0.05-$0.15                             ║
+║       • Meer info: https://www.anthropic.com/pricing                             ║
+║                                                                                  ║
+╚══════════════════════════════════════════════════════════════════════════════════╝
+```
+
+<br>
+
+### 🐳 STAP 2: Installeer Docker
+
+<details>
+<summary><strong>🪟 Windows Installatie</strong></summary>
+
+```bash
+# 1. Download Docker Desktop voor Windows:
+#    https://www.docker.com/products/docker-desktop
+
+# 2. Run de installer en volg de wizard
+
+# 3. Na installatie, open PowerShell en verifieer:
+docker --version
+# Output: Docker version 24.x.x, build xxxxx
+
+# 4. Start Docker Desktop (indien niet automatisch gestart)
+
+# 5. Wacht tot het groene "Docker is running" icoon verschijnt
+```
+
+</summary>
+</details>
+
+<details>
+<summary><strong>🍎 macOS Installatie</strong></summary>
+
+```bash
+# Optie 1: Via Homebrew (aanbevolen)
+brew install --cask docker
+
+# Optie 2: Download van website
+# https://www.docker.com/products/docker-desktop
+
+# Verifieer installatie
+docker --version
+```
+
+</details>
+
+<details>
+<summary><strong>🐧 Linux Installatie (Ubuntu/Debian)</strong></summary>
+
+```bash
+# Update package index
+sudo apt-get update
+
+# Install prerequisites
+sudo apt-get install ca-certificates curl gnupg
+
+# Add Docker's official GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Add user to docker group (avoid sudo)
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Verify
+docker --version
+```
+
+</details>
+
+<br>
+
+### 📥 STAP 3: Clone & Build
+
+```bash
+# 1️⃣ Clone de repository
+git clone https://github.com/Maca2024/omega-engine.git
+cd omega-engine
+
+# 2️⃣ Build de Docker image
+cd docker
+docker build -t aetherlink/omega-engine:latest .
+
+# ⏱️ Dit duurt ~3-5 minuten de eerste keer
+
+# 3️⃣ Verifieer dat de build succesvol was
+docker images | grep omega-engine
+# Output: aetherlink/omega-engine   latest   xxxxx   Just now   ~500MB
+```
+
+<br>
+
+### ⚙️ STAP 4: Configureer Je Environment
+
+**Windows (PowerShell):**
+```powershell
+# Stel je API key in als environment variable
+$env:ANTHROPIC_API_KEY = "sk-ant-api03-JOUW-KEY-HIER"
+
+# Of voeg permanent toe aan je profile:
+notepad $PROFILE
+# Voeg toe: $env:ANTHROPIC_API_KEY = "sk-ant-api03-JOUW-KEY-HIER"
+```
+
+**macOS/Linux (Bash/Zsh):**
+```bash
+# Tijdelijk (huidige sessie)
+export ANTHROPIC_API_KEY="sk-ant-api03-JOUW-KEY-HIER"
+
+# Permanent (voeg toe aan ~/.bashrc of ~/.zshrc)
+echo 'export ANTHROPIC_API_KEY="sk-ant-api03-JOUW-KEY-HIER"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+<br>
+
+### 🚀 STAP 5: Run Je Eerste Refactoring!
+
+```bash
+# Maak een test directory met legacy PHP code
+mkdir -p ~/my-legacy-project/src
+cat > ~/my-legacy-project/src/OldController.php << 'EOF'
+<?php
+class oldController {
+    function getUsers() {
+        $conn = mysql_connect("localhost", "root", "");
+        $result = mysql_query("SELECT * FROM users WHERE id = " . $_GET['id']);
+        while ($row = mysql_fetch_array($result)) {
+            echo "<div>" . $row['name'] . "</div>";
+        }
+    }
+}
+EOF
+
+# Run de Omega Engine!
+docker run --rm \
+  -v "$HOME/my-legacy-project:/workspace" \
+  -v "$(pwd)/engine:/app" \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  aetherlink/omega-engine:latest \
+  php omega refactor /workspace/src/OldController.php
+```
+
+<br>
+
+### ✅ VERWACHTE OUTPUT
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║         OMEGA-PHP REFACTORING ENGINE - De RalphLoop          ║
+║                   AetherLink.AI Tech Engineering © 2024      ║
+╚══════════════════════════════════════════════════════════════╝
+
+Target: /workspace/src/OldController.php
+Mode: LIVE
+
+📦 [PRE-LOOP] Running Rector (deterministic pass)...
+✅ Rector applied transformations
+
+🔄 [ITERATION 1/10]
+  📊 Running PHPStan (Level 9)...
+  📊 PHPStan errors: 5
+  🤖 Requesting AI fix from Claude...
+  ✅ AI fix applied
+
+🔄 [ITERATION 2/10]
+  📊 Running PHPStan (Level 9)...
+  📊 PHPStan errors: 0
+
+🏆 ════════════════════════════════════════════════ 🏆
+
+   GOLD STANDARD ACHIEVED!
+
+   ✅ PHPStan Level 9: PASS
+   ✅ Iterations needed: 2
+
+🏆 ════════════════════════════════════════════════ 🏆
+```
+
+<br>
+
+---
+
+<h2 align="center">💡 TIPS & BEST PRACTICES</h2>
+
+<br>
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   💡 PRO TIPS                                                                    │
+│   ═══════════                                                                    │
+│                                                                                  │
+│   1️⃣  BEGIN MET --dry-run                                                        │
+│       Analyseer eerst je code zonder wijzigingen                                 │
+│                                                                                  │
+│   2️⃣  MAAK BACKUPS                                                               │
+│       Commit je code naar git VOOR je de engine runt                             │
+│                                                                                  │
+│   3️⃣  EEN FILE TEGELIJK                                                          │
+│       Begin met kleinere files om het proces te begrijpen                        │
+│                                                                                  │
+│   4️⃣  CHECK DE OUTPUT                                                            │
+│       Review de gegenereerde code voordat je het naar productie pusht            │
+│                                                                                  │
+│   5️⃣  GEBRUIK JSON OUTPUT VOOR CI/CD                                             │
+│       --output=json geeft machine-readable resultaten                            │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+```
+
+<br>
+
+---
+
 <h2 align="center">🛣️ ROADMAP</h2>
 
 <br>
 
+- [x] ✅ Single-file refactoring
+- [x] ✅ PHPStan Level 9 compliance
+- [x] ✅ Pest test integration
+- [x] ✅ JSON output for CI/CD
 - [ ] 📁 Multi-file refactoring support
 - [ ] 🔀 Git integration (auto-commit per iteratie)
 - [ ] 📱 Slack/Teams notifications
 - [ ] 💰 Cost tracking dashboard
 - [ ] 📝 Custom rule definitions
 - [ ] 🌐 Web UI
+
+<br>
+
+---
+
+<h2 align="center">🤝 CONTRIBUTING</h2>
+
+<br>
+
+We verwelkomen bijdragen! Zie onze [Contributing Guide](CONTRIBUTING.md) voor details.
+
+```bash
+# Fork de repo, maak een branch, push je changes
+git checkout -b feature/amazing-feature
+git commit -m "Add amazing feature"
+git push origin feature/amazing-feature
+# Open een Pull Request
+```
 
 <br>
 

@@ -1,0 +1,14 @@
+{
+  "job_id": "TEST-ALPHA-01",
+  "context": "AetherLink.AI Tech Digital Transition - Phase 1",
+  "task": {
+    "source_file": "legacy/BadInvoiceCalculator.php",
+    "target_path": "src/Domain/Invoicing/Services/InvoicePriceCalculator.php",
+    "instructions": "Transform legacy PHP to modern PHP 8.4 with strict types, DTOs, and no side effects",
+    "quality_gates": {
+      "phpstan_level": 9,
+      "test_coverage": 100,
+      "forbidden_functions": ["echo", "print_r", "dd"]
+    }
+  }
+}

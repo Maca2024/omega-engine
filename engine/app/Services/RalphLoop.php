@@ -444,11 +444,16 @@ PROMPT;
      */
     private function runPhpStan(string $targetPath): array
     {
+        // Gebruik een minimale config voor externe bestanden
+        $externalConfig = $this->projectRoot . '/phpstan-external.neon';
+
         $process = new Process(
             [
                 $this->phpstanBinary,
                 'analyse',
                 $targetPath,
+                '--level=9',
+                '-c', $externalConfig,
                 '--error-format=json',
                 '--no-progress',
                 '--memory-limit=2G',
@@ -476,11 +481,12 @@ PROMPT;
         $errors = [];
 
         foreach ($decoded['files'] ?? [] as $file => $fileData) {
-            foreach ($fileData['errors'] ?? [] as $error) {
+            // PHPStan JSON format uses 'messages' not 'errors'
+            foreach ($fileData['messages'] ?? [] as $error) {
                 $errors[] = [
                     'file' => $file,
-                    'line' => $error['line'],
-                    'message' => $error['message'],
+                    'line' => $error['line'] ?? 0,
+                    'message' => $error['message'] ?? 'Unknown error',
                     'ignorable' => $error['ignorable'] ?? false,
                 ];
             }
