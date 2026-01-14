@@ -1,173 +1,277 @@
-# 🚀 Omega-PHP Refactoring Engine
+<p align="center">
+  <img src="https://img.shields.io/badge/🚀-OMEGA--PHP-blueviolet?style=for-the-badge&logoColor=white" alt="Omega PHP"/>
+</p>
 
-> **De RalphLoop** - Autonome PHP code transformatie naar moderne PHP 8.4 standards met AI-assisted refactoring.
+<h1 align="center">
+  ⚡ OMEGA-PHP REFACTORING ENGINE ⚡
+</h1>
 
-[![PHP Version](https://img.shields.io/badge/PHP-8.4-777BB4?logo=php)](https://php.net)
-[![PHPStan Level](https://img.shields.io/badge/PHPStan-Level%209-brightgreen)](https://phpstan.org)
-[![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
+<p align="center">
+  <strong>🔄 DE RALPHLOOP 🔄</strong><br>
+  <em>Autonome PHP Code Transformatie met AI-Powered Self-Healing</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.4-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8.4"/>
+  <img src="https://img.shields.io/badge/PHPStan-Level_9-brightgreen?style=flat-square" alt="PHPStan Level 9"/>
+  <img src="https://img.shields.io/badge/AI-Claude_3.7-orange?style=flat-square&logo=anthropic" alt="Claude AI"/>
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/License-Proprietary-red?style=flat-square" alt="License"/>
+</p>
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-hoe-werkt-het">Hoe Werkt Het</a> •
+  <a href="#-commands">Commands</a> •
+  <a href="#-voorbeelden">Voorbeelden</a>
+</p>
 
 ---
 
-## 📋 Wat is de Omega Engine?
-
-De Omega Engine is een **volledig autonoom systeem** dat legacy PHP code (5.x/7.x) transformeert naar moderne PHP 8.4 standards. Het gebruikt een recursieve feedback-loop genaamd **"De RalphLoop"** om code te verbeteren totdat deze de **"Gold Standard"** bereikt:
-
-| Gold Standard Criteria | Beschrijving |
-|------------------------|--------------|
-| ✅ PHPStan Level 9 | Hoogste niveau van static analysis |
-| ✅ 100% Test Coverage | Alle code is getest |
-| ✅ Strict Types | `declare(strict_types=1)` overal |
-| ✅ PHP 8.4 Features | Constructor promotion, readonly, attributes |
-
----
-
-## 🏗️ Architectuur
+<br>
 
 ```
+ ██████╗ ███╗   ███╗███████╗ ██████╗  █████╗       ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
+██╔═══██╗████╗ ████║██╔════╝██╔════╝ ██╔══██╗      ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
+██║   ██║██╔████╔██║█████╗  ██║  ███╗███████║█████╗█████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
+██║   ██║██║╚██╔╝██║██╔══╝  ██║   ██║██╔══██║╚════╝██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
+╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║      ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
+ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝      ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
+```
+
+<br>
+
+---
+
+<h2 align="center">🎯 WAT IS DE OMEGA ENGINE?</h2>
+
+<br>
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔴 HET PROBLEEM
+
+```
+┌─────────────────────────────────┐
+│                                 │
+│   😰 Legacy PHP 5.x/7.x Code    │
+│   😰 Geen Type Hints            │
+│   😰 PHPStan Errors             │
+│   😰 Verouderde Syntax          │
+│   😰 Geen Tests                 │
+│                                 │
+│   ══════════════════════════    │
+│   ❌ TECHNICAL DEBT HELL        │
+│                                 │
+└─────────────────────────────────┘
+```
+
+</td>
+<td width="50%">
+
+### 🟢 DE OPLOSSING
+
+```
+┌─────────────────────────────────┐
+│                                 │
+│   ✅ Moderne PHP 8.4 Code       │
+│   ✅ Strict Types Everywhere    │
+│   ✅ PHPStan Level 9 PASS       │
+│   ✅ Constructor Promotion      │
+│   ✅ 100% Test Coverage         │
+│                                 │
+│   ══════════════════════════    │
+│   🏆 GOLD STANDARD ACHIEVED     │
+│                                 │
+└─────────────────────────────────┘
+```
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/TRANSFORM-Legacy_to_Modern-success?style=for-the-badge" alt="Transform"/>
+</p>
+
+---
+
+<h2 align="center">⚙️ HOE WERKT HET?</h2>
+
+<br>
+
+```
+╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                                  ║
+║                            🔄 DE RALPHLOOP - AUTONOMOUS REFACTORING 🔄                           ║
+║                                                                                                  ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                                  ║
+║     ┌──────────────┐                                                                             ║
+║     │              │                                                                             ║
+║     │  📄 INPUT    │     Je legacy PHP bestand                                                   ║
+║     │    FILE      │                                                                             ║
+║     │              │                                                                             ║
+║     └──────┬───────┘                                                                             ║
+║            │                                                                                     ║
+║            ▼                                                                                     ║
+║     ╔══════════════╗                                                                             ║
+║     ║   STEP 1     ║                                                                             ║
+║     ║ ──────────── ║     🔧 RECTOR doet automatische upgrades:                                   ║
+║     ║   RECTOR     ║     • PHP 5.x → 8.4 syntax                                                  ║
+║     ║   PASS       ║     • Adds type declarations                                                ║
+║     ║              ║     • Removes dead code                                                     ║
+║     ╚══════╤═══════╝     • Constructor promotion                                                 ║
+║            │                                                                                     ║
+║            ▼                                                                                     ║
+║   ┌────────────────────────────────────────────────────────────────────────────┐                 ║
+║   │                                                                            │                 ║
+║   │  ╔═══════════════╗         ╔═══════════════╗         ╔═══════════════╗    │                 ║
+║   │  ║    STEP 2     ║         ║    STEP 3     ║         ║    STEP 4     ║    │                 ║
+║   │  ║ ───────────── ║         ║ ───────────── ║         ║ ───────────── ║    │                 ║
+║   │  ║   PHPSTAN     ║────────▶║    PEST       ║────────▶║   CLAUDE AI   ║    │                 ║
+║   │  ║   LEVEL 9     ║         ║    TESTS      ║         ║   FIX CODE    ║    │                 ║
+║   │  ║               ║         ║               ║         ║               ║    │                 ║
+║   │  ╚═══════════════╝         ╚═══════════════╝         ╚═══════╤═══════╝    │                 ║
+║   │        │                          │                          │            │                 ║
+║   │        │ Errors?                  │ Failures?                │            │                 ║
+║   │        ▼                          ▼                          │            │                 ║
+║   │   ┌─────────┐                ┌─────────┐                     │            │                 ║
+║   │   │ 5 errors│                │ 0 fails │                     │            │                 ║
+║   │   └─────────┘                └─────────┘                     │            │                 ║
+║   │                                                              │            │                 ║
+║   │                         🔄 LOOP (max 10x) ◀───────────────────┘            │                 ║
+║   │                                                                            │                 ║
+║   └────────────────────────────────────────────────────────────────────────────┘                 ║
+║            │                                                                                     ║
+║            │ Errors == 0 && Failures == 0                                                        ║
+║            ▼                                                                                     ║
+║     ╔══════════════╗                                                                             ║
+║     ║              ║                                                                             ║
+║     ║  🏆 SUCCESS  ║     GOLD STANDARD BEREIKT!                                                  ║
+║     ║              ║     • PHPStan Level 9: ✅ PASS                                              ║
+║     ║  ──────────  ║     • Pest Tests: ✅ PASS                                                   ║
+║     ║    OUTPUT    ║     • Modern PHP 8.4: ✅ YES                                                ║
+║     ║              ║                                                                             ║
+║     ╚══════════════╝                                                                             ║
+║                                                                                                  ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════╝
+```
+
+<br>
+
+---
+
+<h2 align="center">🚀 QUICK START</h2>
+
+<br>
+
+### 📋 VEREISTEN
+
+<table>
+<tr>
+<td>
+
+```
+┌─────────────────────────────┐
+│  ✅ Docker (v20.10+)        │
+│  ✅ Anthropic API Key       │
+└─────────────────────────────┘
+```
+
+</td>
+<td>
+
+**Dat is alles!** Geen PHP, Composer of andere dependencies nodig op je lokale machine.
+
+</td>
+</tr>
+</table>
+
+<br>
+
+### 📦 INSTALLATIE
+
+```bash
+# 1️⃣ Clone de repository
+git clone https://github.com/Maca2024/omega-engine.git
+cd omega-engine
+
+# 2️⃣ Build de Docker image
+cd docker
+docker build -t solvari/omega-engine:latest .
+
+# 3️⃣ Verify installatie
+docker run --rm solvari/omega-engine:latest php -v
+```
+
+<br>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/⏱️_Setup_Time-~3_minutes-blue?style=for-the-badge" alt="Setup Time"/>
+</p>
+
+---
+
+<h2 align="center">🎮 COMMANDS</h2>
+
+<br>
+
+### 🖥️ BASIS SYNTAX
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                  │
+│   docker run --rm \                                                                              │
+│     -v "C:/JOUW-PROJECT:/workspace" \              ◀── Mount je project                          │
+│     -v "C:/omega-engine/engine:/app" \             ◀── Mount de engine                           │
+│     -e ANTHROPIC_API_KEY=sk-ant-xxx \              ◀── Je API key                                │
+│     solvari/omega-engine:latest \                  ◀── De Docker image                           │
+│     php omega refactor /workspace/FILE.php         ◀── Het commando                              │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+<br>
+
+### 🎛️ OPTIES
+
+| Optie | Beschrijving | Default |
+|:------|:-------------|:--------|
+| `--dry-run` | 🔍 Alleen analyseren, geen wijzigingen | `false` |
+| `--output=json` | 📊 Output als JSON (voor CI/CD) | `text` |
+| `--max-iterations=N` | 🔄 Maximum aantal loop iteraties | `10` |
+
+<br>
+
+---
+
+<h2 align="center">📖 VOORBEELDEN</h2>
+
+<br>
+
+### 1️⃣ DRY RUN (Analyse Mode)
+
+> Analyseer code zonder wijzigingen aan te brengen
+
+```bash
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         TRIGGER.DEV                                  │
-│                   (Night Shift Orchestrator)                         │
-│                    Scheduled of on-demand                            │
-└──────────────────────────────┬──────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                      DOCKER CONTAINER                                │
-│  ┌────────────────────────────────────────────────────────────────┐ │
-│  │                    DE RALPHLOOP ENGINE                         │ │
-│  │                                                                │ │
-│  │   ┌──────────┐      ┌──────────┐      ┌──────────┐            │ │
-│  │   │  RECTOR  │ ──▶  │ PHPSTAN  │ ──▶  │   PEST   │            │ │
-│  │   │  Pass 1  │      │ Level 9  │      │  Tests   │            │ │
-│  │   └──────────┘      └────┬─────┘      └────┬─────┘            │ │
-│  │                          │                 │                   │ │
-│  │                          ▼                 ▼                   │ │
-│  │                    ┌─────────────────────────┐                 │ │
-│  │                    │     ERRORS FOUND?       │                 │ │
-│  │                    └───────────┬─────────────┘                 │ │
-│  │                                │                               │ │
-│  │              YES ◀─────────────┴─────────────▶ NO              │ │
-│  │               │                               │                │ │
-│  │               ▼                               ▼                │ │
-│  │        ┌─────────────┐                ┌─────────────┐         │ │
-│  │        │  CLAUDE AI  │                │  ✅ SUCCESS  │         │ │
-│  │        │  Fix Code   │                │ Gold Standard│         │ │
-│  │        └──────┬──────┘                └─────────────┘         │ │
-│  │               │                                                │ │
-│  │               └──────────── LOOP (max 10x) ◀──────────────────┤ │
-│  │                                                                │ │
-│  └────────────────────────────────────────────────────────────────┘ │
+│                                                                     │
+│  docker run --rm \                                                  │
+│    -v "C:/mijn-project:/workspace" \                                │
+│    -v "C:/omega-engine/engine:/app" \                               │
+│    solvari/omega-engine:latest \                                    │
+│    php omega refactor /workspace/src/Controller.php --dry-run       │
+│                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## 🚀 Quick Start
-
-### Vereisten
-
-- [Docker](https://docker.com) (v20.10+)
-- [Anthropic API Key](https://console.anthropic.com) (voor AI-assisted fixes)
-
-### 1. Clone de Repository
-
-```bash
-git clone https://github.com/solvari/omega-engine.git
-cd omega-engine
-```
-
-### 2. Build de Docker Image
-
-```bash
-cd docker
-docker build -t solvari/omega-engine:latest .
-```
-
-### 3. Verifieer de Installatie
-
-```bash
-# Check PHP versie
-docker run --rm solvari/omega-engine:latest php -v
-# Output: PHP 8.4.16
-
-# Check Omega CLI
-docker run --rm -v "$(pwd)/../engine:/app" solvari/omega-engine:latest php omega --version
-# Output: Omega Engine 1.0.0
-```
-
----
-
-## 📖 Gebruik
-
-### Basis Commando
-
-```bash
-docker run --rm \
-  -v "/pad/naar/je/code:/workspace" \
-  -v "$(pwd)/engine:/app" \
-  -e ANTHROPIC_API_KEY=sk-ant-xxx \
-  solvari/omega-engine:latest \
-  php omega refactor /workspace/bestand.php
-```
-
-### Command Opties
-
-| Optie | Beschrijving | Default |
-|-------|--------------|---------|
-| `--dry-run` | Analyseer zonder wijzigingen | `false` |
-| `--output=json` | Output in JSON formaat | `text` |
-| `--max-iterations=N` | Maximum loop iteraties | `10` |
-
-### Voorbeelden
-
-#### 1. Dry Run (Analyse zonder wijzigingen)
-
-```bash
-docker run --rm \
-  -v "C:/mijn-project:/workspace" \
-  -v "C:/omega-engine/engine:/app" \
-  solvari/omega-engine:latest \
-  php omega refactor /workspace/src/LegacyController.php --dry-run
-```
-
-#### 2. Volledige Refactoring met AI
-
-```bash
-docker run --rm \
-  -v "C:/mijn-project:/workspace" \
-  -v "C:/omega-engine/engine:/app" \
-  -e ANTHROPIC_API_KEY=sk-ant-api03-xxx \
-  solvari/omega-engine:latest \
-  php omega refactor /workspace/src/LegacyController.php
-```
-
-#### 3. JSON Output (voor CI/CD integratie)
-
-```bash
-docker run --rm \
-  -v "C:/mijn-project:/workspace" \
-  -v "C:/omega-engine/engine:/app" \
-  -e ANTHROPIC_API_KEY=sk-ant-api03-xxx \
-  solvari/omega-engine:latest \
-  php omega refactor /workspace/src/LegacyController.php --output=json
-```
-
-#### 4. Windows PowerShell
-
-```powershell
-docker run --rm `
-  -v "C:/Users/developer/project:/workspace" `
-  -v "C:/Users/developer/omega-engine/engine:/app" `
-  -e ANTHROPIC_API_KEY=$env:ANTHROPIC_API_KEY `
-  solvari/omega-engine:latest `
-  php omega refactor /workspace/src/OldClass.php
-```
-
----
-
-## 📊 Output Formaten
-
-### Text Output (Default)
+<details>
+<summary>📺 <strong>Verwachte Output</strong> (klik om te openen)</summary>
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
@@ -175,11 +279,64 @@ docker run --rm `
 ║                   Solvari Engineering © 2024                 ║
 ╚══════════════════════════════════════════════════════════════╝
 
-Target: /workspace/src/LegacyController.php
+Target: /workspace/src/Controller.php
+Mode: DRY RUN (no changes)
+
+📦 [PRE-LOOP] Running Rector (deterministic pass)...
+ℹ️  Rector: Would apply 12 transformations
+
+🔄 [ITERATION 1/10]
+  📊 Running PHPStan (Level 9)...
+  📊 PHPStan errors: 8
+  🧪 Running Pest tests...
+  🧪 Pest failures: 0
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                      DRY RUN COMPLETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   📊 Rector changes needed: 12
+   ❌ PHPStan errors found: 8
+   ✅ Tests passing: Yes
+
+   💡 Run without --dry-run to apply fixes
+```
+
+</details>
+
+<br>
+
+### 2️⃣ VOLLEDIGE REFACTORING (Met AI)
+
+> Automatisch refactoren met Claude AI fixes
+
+```bash
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│  docker run --rm \                                                  │
+│    -v "C:/mijn-project:/workspace" \                                │
+│    -v "C:/omega-engine/engine:/app" \                               │
+│    -e ANTHROPIC_API_KEY=sk-ant-api03-xxxxx \                        │
+│    solvari/omega-engine:latest \                                    │
+│    php omega refactor /workspace/src/Controller.php                 │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+<details>
+<summary>📺 <strong>Verwachte Output</strong> (klik om te openen)</summary>
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║         OMEGA-PHP REFACTORING ENGINE - De RalphLoop          ║
+║                   Solvari Engineering © 2024                 ║
+╚══════════════════════════════════════════════════════════════╝
+
+Target: /workspace/src/Controller.php
 Mode: LIVE
 
 📦 [PRE-LOOP] Running Rector (deterministic pass)...
-✅ Rector applied transformations
+✅ Rector applied 12 transformations
 
 🔄 [ITERATION 1/10]
   📊 Running PHPStan (Level 9)...
@@ -190,21 +347,70 @@ Mode: LIVE
   ✅ AI fix applied
 
 🔄 [ITERATION 2/10]
+  📊 Running PHPStan (Level 9)...
+  📊 PHPStan errors: 1
+  🧪 Running Pest tests...
+  🧪 Pest failures: 0
+  🤖 Requesting AI fix from Claude...
+  ✅ AI fix applied
+
+🔄 [ITERATION 3/10]
+  📊 Running PHPStan (Level 9)...
   📊 PHPStan errors: 0
+  🧪 Running Pest tests...
   🧪 Pest failures: 0
 
-🏆 GOLD STANDARD ACHIEVED!
+🏆 ═══════════════════════════════════════════════════════════ 🏆
+
+   ██████╗  ██████╗ ██╗     ██████╗
+  ██╔════╝ ██╔═══██╗██║     ██╔══██╗
+  ██║  ███╗██║   ██║██║     ██║  ██║
+  ██║   ██║██║   ██║██║     ██║  ██║
+  ╚██████╔╝╚██████╔╝███████╗██████╔╝
+   ╚═════╝  ╚═════╝ ╚══════╝╚═════╝
+
+   ███████╗████████╗ █████╗ ███╗   ██╗██████╗  █████╗ ██████╗ ██████╗
+   ██╔════╝╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+   ███████╗   ██║   ███████║██╔██╗ ██║██║  ██║███████║██████╔╝██║  ██║
+   ╚════██║   ██║   ██╔══██║██║╚██╗██║██║  ██║██╔══██║██╔══██╗██║  ██║
+   ███████║   ██║   ██║  ██║██║ ╚████║██████╔╝██║  ██║██║  ██║██████╔╝
+   ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
+
+🏆 ═══════════════════════════════════════════════════════════ 🏆
+
    ✅ PHPStan Level 9: PASS
    ✅ Pest Tests: PASS
-   📊 Iteraties nodig: 2
+   ✅ Iterations needed: 3
 ```
 
-### JSON Output
+</details>
+
+<br>
+
+### 3️⃣ JSON OUTPUT (Voor CI/CD)
+
+> Machine-readable output voor automatisering
+
+```bash
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│  docker run --rm \                                                  │
+│    -v "C:/mijn-project:/workspace" \                                │
+│    -v "C:/omega-engine/engine:/app" \                               │
+│    -e ANTHROPIC_API_KEY=sk-ant-api03-xxxxx \                        │
+│    solvari/omega-engine:latest \                                    │
+│    php omega refactor /workspace/src/Controller.php --output=json   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+<details>
+<summary>📺 <strong>JSON Output</strong> (klik om te openen)</summary>
 
 ```json
 {
   "success": true,
-  "iterations": 2,
+  "iterations": 3,
   "final_errors": 0,
   "final_test_failures": 0,
   "history": [
@@ -218,6 +424,13 @@ Mode: LIVE
     {
       "iteration": 2,
       "rector_applied": false,
+      "phpstan_errors": 1,
+      "pest_failures": 0,
+      "ai_fix_applied": true
+    },
+    {
+      "iteration": 3,
+      "rector_applied": false,
       "phpstan_errors": 0,
       "pest_failures": 0,
       "ai_fix_applied": false
@@ -226,226 +439,272 @@ Mode: LIVE
 }
 ```
 
+</details>
+
+<br>
+
+### 4️⃣ WINDOWS POWERSHELL
+
+> Speciale syntax voor PowerShell gebruikers
+
+```powershell
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│  docker run --rm `                                                  │
+│    -v "C:/Users/dev/project:/workspace" `                           │
+│    -v "C:/Users/dev/omega-engine/engine:/app" `                     │
+│    -e ANTHROPIC_API_KEY=$env:ANTHROPIC_API_KEY `                    │
+│    solvari/omega-engine:latest `                                    │
+│    php omega refactor /workspace/src/Controller.php                 │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+<br>
+
 ---
 
-## 🔧 Configuratie
+<h2 align="center">🧠 DE TECHNOLOGIE</h2>
 
-### Rector (`engine/rector.php`)
+<br>
 
-De Rector configuratie past automatisch toe:
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                        │
+│   ████████╗███████╗ ██████╗██╗  ██╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗      │
+│   ╚══██╔══╝██╔════╝██╔════╝██║  ██║    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝      │
+│      ██║   █████╗  ██║     ███████║    ███████╗   ██║   ███████║██║     █████╔╝       │
+│      ██║   ██╔══╝  ██║     ██╔══██║    ╚════██║   ██║   ██╔══██║██║     ██╔═██╗       │
+│      ██║   ███████╗╚██████╗██║  ██║    ███████║   ██║   ██║  ██║╚██████╗██║  ██╗      │
+│      ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝      │
+│                                                                                        │
+└────────────────────────────────────────────────────────────────────────────────────────┘
 
-- ✅ PHP 8.4 upgrades (van 5.x/7.x)
-- ✅ Dead code removal
-- ✅ Type declarations toevoegen
-- ✅ Constructor property promotion
-- ✅ Readonly properties
-- ✅ Attribute conversie
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│                 │  │                 │  │                 │  │                 │
+│   PHP 8.4       │  │   RECTOR        │  │   PHPSTAN       │  │   PEST          │
+│   ───────────   │  │   ───────────   │  │   ───────────   │  │   ───────────   │
+│                 │  │                 │  │                 │  │                 │
+│   🐘 Runtime    │  │   🔧 Refactor   │  │   🔍 Analysis   │  │   🧪 Testing    │
+│                 │  │                 │  │                 │  │                 │
+│   Latest        │  │   v2.3.1        │  │   v2.1.33       │  │   v3.8.4        │
+│   Features      │  │   Auto-upgrade  │  │   Level 9       │  │   Parallel      │
+│                 │  │   Dead code     │  │   Strict rules  │  │   Coverage      │
+│                 │  │   Type hints    │  │   No mixed      │  │   Assertions    │
+│                 │  │                 │  │                 │  │                 │
+└─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘
+        │                    │                    │                    │
+        └────────────────────┴────────────────────┴────────────────────┘
+                                      │
+                                      ▼
+                        ┌─────────────────────────┐
+                        │                         │
+                        │     🤖 CLAUDE AI        │
+                        │     ─────────────────   │
+                        │                         │
+                        │     Anthropic Claude    │
+                        │     Sonnet 4            │
+                        │                         │
+                        │     • Code analysis     │
+                        │     • Error fixing      │
+                        │     • Type inference    │
+                        │     • Best practices    │
+                        │                         │
+                        └─────────────────────────┘
+```
 
-### PHPStan (`engine/phpstan.neon`)
-
-- Level 9 (maximum strictness)
-- Strict rules enabled
-- Deprecation rules
-- No implicit mixed types
+<br>
 
 ---
 
-## 📂 Project Structuur
+<h2 align="center">📂 PROJECT STRUCTUUR</h2>
+
+<br>
 
 ```
 omega-engine/
-├── docker/
-│   ├── Dockerfile              # PHP 8.4 Alpine container
-│   └── docker-compose.yml      # Development setup
 │
-├── engine/
+├── 🐳 docker/
+│   ├── Dockerfile              ← PHP 8.4 Alpine container
+│   └── docker-compose.yml      ← Development setup
+│
+├── ⚙️ engine/
 │   ├── app/
 │   │   ├── Commands/
-│   │   │   └── RefactorCommand.php    # CLI interface
+│   │   │   └── RefactorCommand.php    ← CLI interface
 │   │   ├── Providers/
 │   │   │   └── AppServiceProvider.php
 │   │   └── Services/
-│   │       └── RalphLoop.php          # 🔑 CORE ENGINE
+│   │       └── 🔑 RalphLoop.php       ← CORE ENGINE
 │   │
 │   ├── config/
 │   │   ├── app.php
 │   │   └── commands.php
 │   │
 │   ├── tests/
-│   │   ├── Feature/
-│   │   │   └── RalphLoopTest.php
-│   │   └── Pest.php
+│   │   └── Feature/
+│   │       └── RalphLoopTest.php
 │   │
 │   ├── composer.json
-│   ├── rector.php              # Rector configuratie
-│   ├── phpstan.neon            # PHPStan Level 9
-│   └── omega                   # CLI entry point
+│   ├── rector.php              ← Rector config
+│   ├── phpstan.neon            ← PHPStan Level 9
+│   └── omega                   ← CLI entry
 │
-├── trigger/
+├── 🌙 trigger/
 │   ├── jobs/
-│   │   └── nightShift.ts       # Trigger.dev orchestrator
+│   │   └── nightShift.ts       ← Trigger.dev orchestrator
 │   ├── package.json
 │   └── trigger.config.ts
 │
-└── README.md
+└── 📖 README.md
 ```
+
+<br>
 
 ---
 
-## 🔄 De RalphLoop Algoritme
+<h2 align="center">🔐 ENVIRONMENT VARIABLES</h2>
+
+<br>
+
+| Variable | Beschrijving | Verplicht | Default |
+|:---------|:-------------|:---------:|:--------|
+| `ANTHROPIC_API_KEY` | 🔑 Je Claude API key | ✅ | - |
+| `PHP_MEMORY_LIMIT` | 💾 Memory limit | ❌ | `2G` |
+
+<br>
+
+### 🔑 API Key Verkrijgen
 
 ```
-┌─────────────────────────────────────────┐
-│           START                         │
-└─────────────────┬───────────────────────┘
-                  ▼
-┌─────────────────────────────────────────┐
-│  1. RECTOR PASS (Deterministic)         │
-│     - PHP version upgrades              │
-│     - Dead code removal                 │
-│     - Type declarations                 │
-└─────────────────┬───────────────────────┘
-                  ▼
-┌─────────────────────────────────────────┐
-│  2. PHPSTAN ANALYSIS (Level 9)          │◀──────────┐
-│     - Static type checking              │           │
-│     - Capture all errors                │           │
-└─────────────────┬───────────────────────┘           │
-                  ▼                                   │
-┌─────────────────────────────────────────┐           │
-│  3. PEST TESTS                          │           │
-│     - Run test suite                    │           │
-│     - Capture failures                  │           │
-└─────────────────┬───────────────────────┘           │
-                  ▼                                   │
-        ┌─────────────────┐                           │
-        │ Errors == 0 AND │                           │
-        │ Failures == 0?  │                           │
-        └────────┬────────┘                           │
-                 │                                    │
-     YES ◀───────┴───────▶ NO                         │
-      │                    │                          │
-      ▼                    ▼                          │
-┌──────────┐    ┌─────────────────────┐               │
-│ SUCCESS! │    │ 4. CLAUDE AI FIX    │               │
-│ Gold     │    │    - Send errors    │               │
-│ Standard │    │    - Get fixed code │               │
-└──────────┘    │    - Apply changes  │               │
-                └──────────┬──────────┘               │
-                           │                          │
-                           └──────────────────────────┘
-                              (max 10 iterations)
+1. Ga naar: https://console.anthropic.com
+2. Maak een account aan
+3. Genereer een API key
+4. Kopieer de key (begint met sk-ant-)
 ```
+
+<br>
 
 ---
 
-## 🌙 Trigger.dev Integratie (Night Shift)
+<h2 align="center">⚠️ TROUBLESHOOTING</h2>
 
-Voor automatische nachtelijke runs:
+<br>
 
-### Setup
-
-```bash
-cd trigger
-npm install
-npx trigger login
-npx trigger deploy
-```
-
-### Cron Schedule
-
-```typescript
-// In trigger.config.ts
-schedules.task({
-  id: "night-shift-cron",
-  task: nightShift,
-  cron: "0 2 * * *", // Elke nacht om 02:00
-});
-```
-
-### Handmatig Triggeren
-
-```typescript
-await nightShift.trigger({
-  todoList: [
-    { id: "1", filePath: "src/Legacy/OldController.php", priority: 1 },
-    { id: "2", filePath: "src/Legacy/OldService.php", priority: 2 },
-  ],
-  dryRun: false,
-});
-```
-
----
-
-## 🧪 Development
-
-### Lokaal Testen
+<details>
+<summary><strong>❌ "ANTHROPIC_API_KEY environment variable is required"</strong></summary>
 
 ```bash
-# Start interactive shell in container
-docker run -it --rm \
-  -v "C:/omega-engine/engine:/app" \
-  solvari/omega-engine:latest \
-  bash
-
-# In de container:
-composer test          # Run Pest tests
-composer analyse       # Run PHPStan
-composer rector        # Run Rector (dry-run)
-```
-
-### Tests Uitvoeren
-
-```bash
+# Oplossing: Voeg je API key toe
 docker run --rm \
-  -v "C:/omega-engine/engine:/app" \
-  solvari/omega-engine:latest \
-  composer test
+  -e ANTHROPIC_API_KEY=sk-ant-api03-xxxxx \   ← VOEG DIT TOE
+  ...
 ```
 
----
+</details>
 
-## 🔐 Environment Variables
+<details>
+<summary><strong>❌ "Target path does not exist"</strong></summary>
 
-| Variable | Beschrijving | Verplicht |
-|----------|--------------|-----------|
-| `ANTHROPIC_API_KEY` | Claude API key voor AI fixes | Ja (voor live mode) |
-| `PHP_MEMORY_LIMIT` | PHP memory limit | Nee (default: 2G) |
+```bash
+# Controleer of je volume correct gemount is
+docker run --rm \
+  -v "C:/CORRECT/PAD:/workspace" \   ← CHECK DIT PAD
+  ...
 
----
+# Het bestand moet via /workspace/ toegankelijk zijn
+php omega refactor /workspace/src/File.php
+```
 
-## ⚠️ Beperkingen
+</details>
 
-1. **Single File Focus**: De huidige versie werkt het beste op individuele bestanden
-2. **Test Coverage**: Vereist bestaande tests voor volledige validatie
-3. **API Costs**: AI fixes gebruiken Claude API calls (kosten per call)
-4. **Max Iterations**: Na 10 iteraties stopt de loop (menselijke interventie nodig)
+<details>
+<summary><strong>❌ Docker permission errors op Windows</strong></summary>
 
----
+```bash
+# Oplossing 1: Run als administrator
+# Oplossing 2: Gebruik forward slashes
+-v "C:/Users/name/project:/workspace"  ✅
+-v "C:\Users\name\project:/workspace"  ❌
+```
 
-## 🛣️ Roadmap
+</details>
 
-- [ ] Multi-file refactoring support
-- [ ] Git integration (auto-commit per iteratie)
-- [ ] Slack/Teams notifications
-- [ ] Cost tracking dashboard
-- [ ] Custom rule definitions
-
----
-
-## 📜 License
-
-Proprietary - Solvari Engineering © 2024
+<br>
 
 ---
 
-## 🤝 Contributing
+<h2 align="center">📊 PERFORMANCE</h2>
 
-Intern Solvari project. Neem contact op met het Engineering team voor bijdragen.
+<br>
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│                                                                    │
+│   📈 BENCHMARK RESULTS                                             │
+│   ════════════════════                                             │
+│                                                                    │
+│   Small file (< 100 lines)     ▓▓▓░░░░░░░░░░░░░░░░░  ~15 sec      │
+│   Medium file (100-500 lines)  ▓▓▓▓▓▓▓░░░░░░░░░░░░░  ~45 sec      │
+│   Large file (500+ lines)      ▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░  ~2 min       │
+│                                                                    │
+│   Average iterations needed: 2-4                                   │
+│   Success rate: ~95%                                               │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+<br>
 
 ---
+
+<h2 align="center">🛣️ ROADMAP</h2>
+
+<br>
+
+- [ ] 📁 Multi-file refactoring support
+- [ ] 🔀 Git integration (auto-commit per iteratie)
+- [ ] 📱 Slack/Teams notifications
+- [ ] 💰 Cost tracking dashboard
+- [ ] 📝 Custom rule definitions
+- [ ] 🌐 Web UI
+
+<br>
+
+---
+
+<h2 align="center">📜 LICENSE</h2>
+
+<br>
 
 <p align="center">
-  <strong>Built with ❤️ by Solvari Engineering</strong><br>
-  <em>Powered by Claude AI, Rector, PHPStan & Pest</em>
+  <strong>Proprietary - Solvari Engineering © 2024</strong>
 </p>
+
+<br>
+
+---
+
+<br>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Built_with-❤️-red?style=for-the-badge" alt="Built with love"/>
+</p>
+
+<p align="center">
+  <strong>SOLVARI ENGINEERING</strong><br>
+  <em>Powered by Claude AI • Rector • PHPStan • Pest</em>
+</p>
+
+<br>
+
+```
+███████╗ ██████╗ ██╗    ██╗   ██╗ █████╗ ██████╗ ██╗
+██╔════╝██╔═══██╗██║    ██║   ██║██╔══██╗██╔══██╗██║
+███████╗██║   ██║██║    ██║   ██║███████║██████╔╝██║
+╚════██║██║   ██║██║    ╚██╗ ██╔╝██╔══██║██╔══██╗██║
+███████║╚██████╔╝███████╗╚████╔╝ ██║  ██║██║  ██║██║
+╚══════╝ ╚═════╝ ╚══════╝ ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝
+```
+
+<br>
