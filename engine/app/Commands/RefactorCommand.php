@@ -223,7 +223,7 @@ final class RefactorCommand extends Command
         $this->newLine();
         $this->line('╔══════════════════════════════════════════════════════════════╗');
         $this->line('║         OMEGA-PHP REFACTORING ENGINE - De RalphLoop          ║');
-        $this->line('║                   Solvari Engineering © 2024                 ║');
+        $this->line('║                AetherLink.AI Tech Engineering © 2024          ║');
         $this->line('╚══════════════════════════════════════════════════════════════╝');
         $this->newLine();
 

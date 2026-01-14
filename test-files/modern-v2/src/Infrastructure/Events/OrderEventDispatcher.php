@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  * REPLACES TOXIC LEGACY CODE:
  * ```php
  * // Side-effect email buried in save function
- * @mail("admin@solvari.nl", $onderwerp, "Er is betaald!");
+ * @mail("admin@aetherlink.ai", $onderwerp, "Er is betaald!");
  * ```
  *
  * NOW: Clean event-driven architecture with async support.

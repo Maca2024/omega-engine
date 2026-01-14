@@ -14,7 +14,7 @@ use App\Domain\Order\DTOs\OrderDTO;
  * ```php
  * // @ suppresses errors (bad practice)
  * // Hardcoded email, no template, no error handling
- * @mail("admin@solvari.nl", $onderwerp, "Er is betaald!");
+ * @mail("admin@aetherlink.ai", $onderwerp, "Er is betaald!");
  * ```
  *
  * NOW: Proper email service with templates and error handling.

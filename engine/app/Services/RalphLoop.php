@@ -22,7 +22,7 @@
  * - Gestructureerde output: Elke iteratie is traceerbaar voor debugging
  *
  * @package AetherLink.AI Tech\OmegaEngine
- * @author  AetherLink.AI Tech Engineering <engineering@solvari.com>
+ * @author  AetherLink.AI Tech Engineering <engineering@aetherlink.ai>
  */
 
 declare(strict_types=1);

@@ -28,7 +28,7 @@ use App\Infrastructure\Mail\OrderMailer;
  *     mysql_query($sql) or die("DATABASE STUK: ". mysql_error());
  *
  *     // Side effect: email in save function
- *     @mail("admin@solvari.nl", $onderwerp, "Er is betaald!");
+ *     @mail("admin@aetherlink.ai", $onderwerp, "Er is betaald!");
  *
  *     // Header after output
  *     echo "Opgeslagen!";
